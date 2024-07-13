@@ -6,18 +6,18 @@ function DesktopMenu() {
   return (
     <nav className="hidden md:block">
       <ul className="flex space-x-10">
-        <li className="navbarItem relative">
+        <li className="underlineText relative">
           <Link href={`/create-collar`}>Create Collar</Link>
         </li>
         <li
           onClick={() => scrollIntoView("gallery")}
-          className="navbarItem relative cursor-pointer"
+          className="underlineText relative cursor-pointer"
         >
           Gallery
         </li>
         <li
           onClick={() => scrollIntoView("faqs")}
-          className="navbarItem relative cursor-pointer"
+          className="underlineText relative cursor-pointer"
         >
           FAQs
         </li>

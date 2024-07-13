@@ -89,7 +89,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.navbarItem::before {
+.underlineText::before {
   content: "";
   width: 0;
   height: 8px;
@@ -106,7 +106,7 @@
   z-index: -1;
 }
 
-.navbarItem:hover::before {
+.underlineText:hover::before {
   width: calc(100% + 8px);
 }
 
