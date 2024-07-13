@@ -7,6 +7,9 @@
     --font-poppins: "Poppins", sans-serif;
     --font-unbounded: "Unbounded", sans-serif;
 
+    --gradient-start: #FBAB7E;
+    --gradient-end: #F7CE68;
+    
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -26,7 +29,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
+    --radius: 0.3rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -66,7 +69,35 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground font-poppins;
+  html {
+    @apply scroll-smooth
   }
+  body {
+    @apply bg-background text-foreground font-poppins text-lg;
+  }
+}
+
+.logoText {
+  background-color: var(--gradient-start);
+  background-image: linear-gradient(62deg, var(--gradient-start) 0%, var(--gradient-end));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbarItem::before {
+  content: "";
+  width: 0;
+  height: 8px;
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, var(--gradient-start) 0%, var(--gradient-end));
+  position: absolute;
+  bottom: 4;
+  left: -4;
+  transition: all ease 500ms;
+  z-index: -1;
+}
+
+.navbarItem:hover::before {
+  width: calc(100% + 8px);
 }
