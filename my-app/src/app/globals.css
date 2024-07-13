@@ -7,9 +7,9 @@
     --font-poppins: "Poppins", sans-serif;
     --font-unbounded: "Unbounded", sans-serif;
 
-    --gradient-start: #FBAB7E;
-    --gradient-end: #F7CE68;
-    
+    --gradient-start: #ff5858;
+    --gradient-end: #f09819;
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -70,16 +70,20 @@
     @apply border-border;
   }
   html {
-    @apply scroll-smooth
+    @apply scroll-smooth;
   }
   body {
     @apply bg-background text-foreground font-poppins text-lg;
   }
 }
 
-.logoText {
+.gradientText {
   background-color: var(--gradient-start);
-  background-image: linear-gradient(62deg, var(--gradient-start) 0%, var(--gradient-end));
+  background-image: linear-gradient(
+    90deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -89,8 +93,12 @@
   content: "";
   width: 0;
   height: 8px;
-  background-color: #fbab7e;
-  background-image: linear-gradient(62deg, var(--gradient-start) 0%, var(--gradient-end));
+  background-color: var(--gradient-start);
+  background-image: linear-gradient(
+    90deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end)
+  );
   position: absolute;
   bottom: 4;
   left: -4;
@@ -100,4 +108,10 @@
 
 .navbarItem:hover::before {
   width: calc(100% + 8px);
+}
+
+.imageBg {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f4f4f5' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
 }

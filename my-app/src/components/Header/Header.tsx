@@ -8,13 +8,13 @@ import { scrollIntoView } from "@/utils/scrollIntoView";
 
 function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full bg-background ">
+    <header className="fixed top-0 left-0 w-full bg-background z-50">
       <div className="container mx-auto py-5 lg:pt-6 lg:pb-10">
         <TopMenu />
         <div className="flex justify-between items-center">
           <p
             onClick={() => scrollIntoView("hero")}
-            className="logoText lg:text-2xl font-unbounded font-bold tracking-tighter cursor-pointer"
+            className="gradientText lg:text-2xl font-unbounded font-bold tracking-tighter cursor-pointer"
           >
             CollarBud
           </p>
