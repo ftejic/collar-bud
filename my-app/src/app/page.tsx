@@ -1,5 +1,6 @@
 import Desc from "@/components/Desc/Desc";
 import Faq from "@/components/Faq/Faq";
+import Footer from "@/components/Footer/Footer";
 import Gallery from "@/components/Gallery/Gallery";
 import Hero from "@/components/Hero/Hero";
 import ProductCategories from "@/components/ProductCategories/ProductCategories";
@@ -16,6 +17,7 @@ export default function Home() {
       <div className="textureBg">
         <Faq />
       </div>
+      <Footer />
     </>
   );
 }
