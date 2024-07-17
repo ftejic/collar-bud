@@ -3,7 +3,7 @@ import React from "react";
 
 function Desc() {
   return (
-    <section className="py-10 bg-gradient-to-r from-gradient-start to-gradient-end">
+    <section className="py-10 md:py-16 bg-gradient-to-r from-gradient-start to-gradient-end">
       <div className="container mx-auto">
         <ul className="text-center lg:flex justify-around space-y-10 lg:space-y-0">
           <li className="flex flex-col items-center font-bold">

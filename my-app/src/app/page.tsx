@@ -1,4 +1,4 @@
-import Desc from "@/components/Desc";
+import Desc from "@/components/Desc/Desc";
 import Hero from "@/components/Hero/Hero";
 import ProductCategories from "@/components/ProductCategories/ProductCategories";
 

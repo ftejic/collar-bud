@@ -7,7 +7,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="container mx-auto mt-[68px] md:mt-[100px] lg:mt-32 py-10 sm:py-14 md:py-16 lg:py-24 text-center"
+      className="container mx-auto mt-[68px] md:mt-[100px] lg:mt-32 py-10 md:py-16 text-center"
     >
       <h1 className="font-unbounded font-bold text-2xl min-[375px]:text-4xl sm:text-6xl md:text-7xl tracking-tight drop-shadow-lg">
         CRAFTED FOR
