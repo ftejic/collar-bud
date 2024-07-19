@@ -19,7 +19,7 @@ function MobileMenu() {
       </SheetTrigger>
       <SheetContent side={"right"}>
         <SheetHeader>
-          <SheetTitle>CollarBud</SheetTitle>
+          <SheetTitle className="font-unbounded">CollarBud</SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
         <nav className="mt-10">

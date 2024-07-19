@@ -87,7 +87,7 @@ function ContactForm() {
             <FormItem className="space-y-0">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="j@example.com" {...field} />
+                <Input placeholder="m@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
