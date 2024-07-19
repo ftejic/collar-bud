@@ -26,9 +26,9 @@ import { useState } from "react";
 const formSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Invalid email address format." }),
-  password: z.string().min(1, { message: "Password is required." }),
+    .min(1, "Email is required")
+    .email("Invalid email address format."),
+  password: z.string().min(1, "Password is required."),
 });
 
 function Login() {
@@ -66,10 +66,7 @@ function Login() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="m@example.com"
-                        {...field}
-                      />
+                      <Input placeholder="m@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
