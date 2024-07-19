@@ -5,10 +5,7 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <section
-      id="hero"
-      className="container mx-auto mt-[68px] md:mt-[100px] lg:mt-32 py-10 md:py-16 text-center"
-    >
+    <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16 text-center">
       <h1 className="font-unbounded font-bold text-2xl min-[375px]:text-4xl sm:text-6xl md:text-7xl tracking-tight drop-shadow-lg">
         CRAFTED FOR
         <span className="block gradientText">COMFORT.</span>
