@@ -51,7 +51,7 @@ function Login() {
     <div className="mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="font-unbounded text-2xl">Login</CardTitle>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
