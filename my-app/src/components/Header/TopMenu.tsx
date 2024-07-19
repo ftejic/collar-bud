@@ -2,37 +2,77 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../ui/navigation-menu";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 function TopMenu() {
   return (
-    <nav className="hidden md:flex justify-end mb-4">
-      <ul className="flex space-x-2 text-xs font-bold">
-        <DropdownMenu modal={false}>
-          <DropdownMenuTrigger className="outline-none">
-            <li>Help</li>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Help</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Size Charts</DropdownMenuItem>
-            <DropdownMenuItem>Privacy Policy</DropdownMenuItem>
-            <DropdownMenuItem>Terms of Sale</DropdownMenuItem>
-            <DropdownMenuItem>Terms of Use</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <Separator orientation="vertical" />
-        <li>
-          <Link href={"/login"}>Sign in</Link>
-        </li>
-      </ul>
-    </nav>
+    <div className="hidden md:flex justify-end mb-4">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>
+              <Link href={"/help"}>Help</Link>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink>
+                <ul>
+                  <li>
+                    <Link href="/help/size-charts" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Size Charts
+                      </NavigationMenuLink>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/help/privacy-policy" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Privacy Policy
+                      </NavigationMenuLink>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/help/terms-of-sale" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Terms of Sale
+                      </NavigationMenuLink>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/help/terms-of-use" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Terms of Use
+                      </NavigationMenuLink>
+                    </Link>
+                  </li>
+                </ul>
+              </NavigationMenuLink>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/login" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Sign in
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   );
 }
 
