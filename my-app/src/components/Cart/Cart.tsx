@@ -28,7 +28,7 @@ function Cart() {
             <Separator />
             <div className="flex justify-between">
               <p>Total:</p>
-              <p>150 USD</p>
+              <p>150.00&#8364;</p>
             </div>
             <SheetClose asChild>
               <Button className="w-full">Complete Purchase</Button>

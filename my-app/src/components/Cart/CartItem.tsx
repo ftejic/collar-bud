@@ -21,7 +21,7 @@ function CartItem() {
         </div>
         <XIcon className="w-4 h-4 cursor-pointer"/>
       </div>
-      <p className="text-center">1 x 50 USD</p>
+      <p className="text-center">1 x 50.00&#8364;</p>
     </div>
   );
 }
