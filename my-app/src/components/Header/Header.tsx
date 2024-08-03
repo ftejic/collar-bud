@@ -4,6 +4,7 @@ import MobileMenu from "./MobileMenu";
 import DesktopMenu from "./DesktopMenu";
 import TopMenu from "./TopMenu";
 import Link from "next/link";
+import Cart from "../Cart/Cart";
 
 function Header() {
   return (
@@ -21,12 +22,7 @@ function Header() {
             <DesktopMenu />
             <MobileMenu />
             <div>
-              <div className="relative cursor-pointer">
-                <ShoppingCartIcon className="text-foreground" />
-                <Badge className="bg-gradient-to-t from-gradient-start to-gradient-end absolute flex -top-2 -right-2 w-4 h-4 rounded-full text-xs p-0 items-center justify-center">
-                  0
-                </Badge>
-              </div>
+              <Cart />
             </div>
           </div>
         </div>
