@@ -1,9 +1,9 @@
 import Product from "@/components/Product/Product";
 
 const products = [
-  { name: "Cat collar 1", price: 35, image: "/images/gallery/1.jpeg" },
-  { name: "Cat collar 2", price: 40, image: "/images/gallery/1.jpeg" },
-  { name: "Cat collar 3", price: 40, image: "/images/gallery/1.jpeg" },
+  { name: "Cat collar 1", price: 35, image: "/images/cat1.jpeg" },
+  { name: "Cat collar 2", price: 40, image: "/images/cat1.jpeg" },
+  { name: "Cat collar 3", price: 40, image: "/images/cat1.jpeg" },
 ];
 
 function ForCats() {

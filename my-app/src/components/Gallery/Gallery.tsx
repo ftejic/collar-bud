@@ -1,11 +1,7 @@
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import Img1 from "../../../public/images/gallery/1.jpeg";
-import Img2 from "../../../public/images/gallery/2.jpeg";
-import Img3 from "../../../public/images/gallery/3.jpeg";
-import Img4 from "../../../public/images/gallery/4.jpeg";
-import Img5 from "../../../public/images/gallery/5.png";
-import Img6 from "../../../public/images/gallery/6.png";
+import Img1 from "../../../public/images/cat1.jpeg";
+import Img2 from "../../../public/images/dog1.png";
 
 function Gallery() {
   return (
@@ -34,7 +30,7 @@ function Gallery() {
           </CarouselItem>
           <CarouselItem className="sm:basis-1/2 lg:basis-1/3">
             <Image
-              src={Img3}
+              src={Img1}
               alt="3"
               priority={false}
               className="w-full h-auto"
@@ -42,7 +38,7 @@ function Gallery() {
           </CarouselItem>
           <CarouselItem className="sm:basis-1/2 lg:basis-1/3">
             <Image
-              src={Img4}
+              src={Img2}
               alt="4"
               priority={false}
               className="w-full h-auto"
@@ -50,7 +46,7 @@ function Gallery() {
           </CarouselItem>
           <CarouselItem className="sm:basis-1/2 lg:basis-1/3">
             <Image
-              src={Img5}
+              src={Img1}
               alt="5"
               priority={false}
               className="w-full h-auto"
@@ -58,7 +54,7 @@ function Gallery() {
           </CarouselItem>
           <CarouselItem className="sm:basis-1/2 lg:basis-1/3">
             <Image
-              src={Img6}
+              src={Img2}
               alt="6"
               priority={false}
               className="w-full h-auto"

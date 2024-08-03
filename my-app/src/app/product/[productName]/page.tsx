@@ -48,7 +48,7 @@ function ProductPage({ params }: { params: { productName: string } }) {
     <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16 flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-10">
       <div className="sm:w-1/2">
         <Image
-          src={"/images/gallery/2.jpeg"}
+          src={"/images/dog1.png"}
           alt=""
           width={670}
           height={670}

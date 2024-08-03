@@ -1,11 +1,11 @@
 import Product from "@/components/Product/Product";
 
 const products = [
-  { name: "Dog collar 1", price: 35, image: "/images/gallery/2.jpeg" },
-  { name: "Dog collar 2", price: 40, image: "/images/gallery/3.jpeg" },
-  { name: "Dog collar 3", price: 40, image: "/images/gallery/4.jpeg" },
-  { name: "Dog collar 4", price: 50, image: "/images/gallery/5.png" },
-  { name: "Dog collar 5", price: 50, image: "/images/gallery/6.png" },
+  { name: "Dog collar 1", price: 35, image: "/images/dog1.png" },
+  { name: "Dog collar 2", price: 40, image: "/images/dog1.png" },
+  { name: "Dog collar 3", price: 40, image: "/images/dog1.png" },
+  { name: "Dog collar 4", price: 50, image: "/images/dog1.png" },
+  { name: "Dog collar 5", price: 50, image: "/images/dog1.png" },
 ];
 
 function ForDogs() {
