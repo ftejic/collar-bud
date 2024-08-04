@@ -1,11 +1,11 @@
 import Product from "@/components/Product/Product";
 
 const products = [
-  { name: "Dog collar 1", price: 35, image: "/images/dog1.png" },
-  { name: "Dog collar 2", price: 40, image: "/images/dog1.png" },
-  { name: "Dog collar 3", price: 40, image: "/images/dog1.png" },
-  { name: "Dog collar 4", price: 50, image: "/images/dog1.png" },
-  { name: "Dog collar 5", price: 50, image: "/images/dog1.png" },
+  { name: "Dog collar 1", price: 35, images: ["/images/dog1.png", "/images/dog1.png"] },
+  { name: "Dog collar 2", price: 40, images: ["/images/dog1.png", "/images/dog1.png", "/images/dog1.png"] },
+  { name: "Dog collar 3", price: 40, images: ["/images/dog1.png"] },
+  { name: "Dog collar 4", price: 50, images: ["/images/dog1.png"] },
+  { name: "Dog collar 5", price: 50, images: ["/images/dog1.png"] },
 ];
 
 function ForDogs() {
@@ -17,7 +17,7 @@ function ForDogs() {
             key={index}
             name={product.name}
             price={product.price}
-            image={product.image}
+            images={product.images}
           />
         ))}
       </div>

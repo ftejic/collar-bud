@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import {
   Form,
   FormField,
   FormItem,
@@ -17,7 +22,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Label } from "@radix-ui/react-label";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -47,13 +51,21 @@ function ProductPage({ params }: { params: { productName: string } }) {
   return (
     <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16 flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-10">
       <div className="sm:w-1/2">
-        <Image
-          src={"/images/dog1.png"}
-          alt=""
-          width={670}
-          height={670}
-          className="rounded-md"
-        />
+        <Carousel className="w-full">
+          <CarouselContent>
+            {Array.from({ length: 3 }).map((_, index) => (
+              <CarouselItem key={index}>
+                <Image
+                  src={"/images/dog1.png"}
+                  alt=""
+                  width={600}
+                  height={600}
+                  className="rounded-md"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
       <div className="sm:w-1/2 space-y-5">
         <Breadcrumb>
