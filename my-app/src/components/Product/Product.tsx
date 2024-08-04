@@ -3,14 +3,9 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { Product as ProductType } from "@prisma/client";
 
-interface ProductInterface {
-  name: string;
-  price: number;
-  images: string[];
-}
-
-function Product({ name, price, images }: ProductInterface) {
+function Product({ name, price, images }: ProductType) {
   return (
     <div className="space-y-5">
       <Carousel className="w-full">
@@ -29,7 +24,9 @@ function Product({ name, price, images }: ProductInterface) {
         </CarouselContent>
       </Carousel>
       <p className="font-unbounded font-bold text-2xl">{name}</p>
-      <p className="font-unbounded font-bold text-4xl">{price}.00&#8364;</p>
+      <p className="font-unbounded font-bold text-4xl">
+        {price.toString()}&#8364;
+      </p>
       <Link href={`/product/${name}`}>
         <Button size={"lg"} className="font-unbounded font-bold uppercase mt-5">
           Customize Now
