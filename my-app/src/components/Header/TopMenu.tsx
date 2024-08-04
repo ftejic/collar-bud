@@ -1,5 +1,4 @@
 import React from "react";
-import { Separator } from "../ui/separator";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -21,46 +20,44 @@ function TopMenu() {
               <Link href={"/help"}>Help</Link>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <NavigationMenuLink>
-                <ul>
-                  <li>
-                    <Link href="/help/size-charts" legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Size Charts
-                      </NavigationMenuLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/help/privacy-policy" legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Privacy Policy
-                      </NavigationMenuLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/help/terms-of-sale" legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Terms of Sale
-                      </NavigationMenuLink>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/help/terms-of-use" legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Terms of Use
-                      </NavigationMenuLink>
-                    </Link>
-                  </li>
-                </ul>
-              </NavigationMenuLink>
+              <ul>
+                <li>
+                  <Link href="/help/size-charts" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Size Charts
+                    </NavigationMenuLink>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/help/privacy-policy" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Privacy Policy
+                    </NavigationMenuLink>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/help/terms-of-sale" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Terms of Sale
+                    </NavigationMenuLink>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/help/terms-of-use" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Terms of Use
+                    </NavigationMenuLink>
+                  </Link>
+                </li>
+              </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>

@@ -7,15 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum ProductType {
+enum ProductCategory {
   cat
   dog
 }
 
 model Product {
   id Int @id @default(autoincrement())
-  type ProductType
+  category ProductCategory
   name String
   price Decimal @db.Decimal(5, 2)
-  itemsLeft Int
+  sizes Json
+  images String[]
 }

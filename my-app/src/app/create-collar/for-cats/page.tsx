@@ -1,21 +1,35 @@
-import Product from "@/components/Product/Product";
+import ProductCard from "@/components/Product/ProductCard";
+import { Product as ProductType } from "@/lib/prisma";
 
-const products = [
-  { name: "Cat collar 1", price: 35, image: "/images/cat1.jpeg" },
-  { name: "Cat collar 2", price: 40, image: "/images/cat1.jpeg" },
-  { name: "Cat collar 3", price: 40, image: "/images/cat1.jpeg" },
-];
+async function getData() {
+  try {
+    const res = await fetch("http://localhost:3000/api/products/?cat=cat", {
+      cache: "no-store",
+    });
+    const data = await res.json();
 
-function ForCats() {
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
+
+async function ForCats() {
+  const { data }: { data: ProductType[] } = await getData();
+
   return (
     <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 lg:gap-10">
-        {products.map((product, index) => (
-          <Product
-            key={index}
+        {data.map((product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            category={product.category}
             name={product.name}
             price={product.price}
-            image={product.image}
+            sizes={product.sizes}
+            images={product.images}
           />
         ))}
       </div>
