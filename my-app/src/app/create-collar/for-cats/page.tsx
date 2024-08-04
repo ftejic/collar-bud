@@ -1,4 +1,4 @@
-import Product from "@/components/Product/Product";
+import ProductCard from "@/components/Product/ProductCard";
 import { Product as ProductType } from "@/lib/prisma";
 
 async function getData() {
@@ -16,13 +16,13 @@ async function getData() {
 }
 
 async function ForCats() {
-  const { data } = await getData();
+  const { data }: { data: ProductType[] } = await getData();
 
   return (
     <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 lg:gap-10">
-        {data.map((product: ProductType) => (
-          <Product
+        {data.map((product) => (
+          <ProductCard
             key={product.id}
             id={product.id}
             category={product.category}

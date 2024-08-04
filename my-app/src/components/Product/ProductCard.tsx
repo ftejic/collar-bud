@@ -4,8 +4,9 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { Product as ProductType } from "@prisma/client";
+import formatPrice from "@/lib/formatPrice";
 
-function Product({ name, price, images }: ProductType) {
+function ProductCard({ name, price, images }: ProductType) {
   return (
     <div className="space-y-5">
       <Carousel className="w-full">
@@ -25,7 +26,7 @@ function Product({ name, price, images }: ProductType) {
       </Carousel>
       <p className="font-unbounded font-bold text-2xl">{name}</p>
       <p className="font-unbounded font-bold text-4xl">
-        {price.toString()}&#8364;
+        {formatPrice(price)}&#8364;
       </p>
       <Link href={`/product/${name}`}>
         <Button size={"lg"} className="font-unbounded font-bold uppercase mt-5">
@@ -36,4 +37,4 @@ function Product({ name, price, images }: ProductType) {
   );
 }
 
-export default Product;
+export default ProductCard;
