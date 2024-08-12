@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ProductType } from "@/lib/prisma";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   petName: z
@@ -24,6 +26,10 @@ const formSchema = z.object({
 });
 
 function PetNameForm({ product }: { product: ProductType }) {
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState("");
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,84 +38,130 @@ function PetNameForm({ product }: { product: ProductType }) {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    console.log(values.petName, selectedSize, selectedQuantity);
+    setSelectedQuantity(1);
+    setSelectedSize("");
     form.reset();
   };
 
+  const plus = () => {
+    if (selectedSize.length === 0) {
+      toast({
+        description: "Please select size first.",
+      });
+      return;
+    }
+
+    const size = product.sizes.find(
+      (size) => size.size === selectedSize
+    )?.quantity;
+
+    console.log(selectedSize);
+
+    if (size && selectedQuantity < size) {
+      setSelectedQuantity(selectedQuantity + 1);
+    }
+  };
+
+  const minus = () => {
+    if (selectedSize.length === 0) {
+      toast({
+        description: "Please select size first.",
+      });
+      return;
+    }
+
+    if (selectedQuantity > 1) {
+      setSelectedQuantity(selectedQuantity - 1);
+    }
+  };
+
+  const setSize = (size: string) => {
+    setSelectedSize(size);
+    setSelectedQuantity(1);
+  };
+
   return (
-    <div className="space-y-2">
-      <p>Select Size</p>
-      <ToggleGroup
-        size={"lg"}
-        type="single"
-        className="justify-start flex-wrap"
-      >
-        {product.category === "dog" && (
+    <>
+      <div className="space-y-2">
+        <p>Select Size</p>
+        <ToggleGroup
+          size={"lg"}
+          type="single"
+          value={selectedSize}
+          className="justify-start flex-wrap"
+        >
+          {product.category === "dog" && (
+            <ToggleGroupItem
+              value="XS"
+              onClick={() => setSize("XS")}
+              disabled={!product.sizes.some((size) => size.size === "XS")}
+            >
+              XS
+            </ToggleGroupItem>
+          )}
           <ToggleGroupItem
-            value="XS"
-            disabled={product.sizes.some(
-              (size) => size.size === "XS" && size.quantity > 0
-            )}
+            value="S"
+            onClick={() => setSize("S")}
+            disabled={!product.sizes.some((size) => size.size === "S")}
           >
-            XS
+            S
           </ToggleGroupItem>
-        )}
-        <ToggleGroupItem
-          value="S"
-          disabled={product.sizes.some(
-            (size) => size.size === "S" && size.quantity > 0
-          )}
-        >
-          S
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="M"
-          disabled={product.sizes.some(
-            (size) => size.size === "M" && size.quantity > 0
-          )}
-        >
-          M
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="L"
-          disabled={product.sizes.some(
-            (size) => size.size === "L" && size.quantity > 0
-          )}
-        >
-          L
-        </ToggleGroupItem>
-        {product.category === "dog" && (
           <ToggleGroupItem
-            value="XL"
-            disabled={product.sizes.some(
-              (size) => size.size === "XL" && size.quantity > 0
-            )}
+            value="M"
+            onClick={() => setSize("M")}
+            disabled={!product.sizes.some((size) => size.size === "M")}
           >
-            XL
+            M
           </ToggleGroupItem>
-        )}
-      </ToggleGroup>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <FormField
-            control={form.control}
-            name="petName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Pet Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Charlie" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button size={"lg"} className="font-unbounded font-bold uppercase">
-            Add to Cart
-          </Button>
-        </form>
-      </Form>
-    </div>
+          <ToggleGroupItem
+            value="L"
+            onClick={() => setSize("L")}
+            disabled={!product.sizes.some((size) => size.size === "L")}
+          >
+            L
+          </ToggleGroupItem>
+          {product.category === "dog" && (
+            <ToggleGroupItem
+              value="XL"
+              onClick={() => setSize("XL")}
+              disabled={!product.sizes.some((size) => size.size === "XL")}
+            >
+              XL
+            </ToggleGroupItem>
+          )}
+        </ToggleGroup>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <FormField
+              control={form.control}
+              name="petName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pet Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Charlie" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex border rounded-md max-w-36 items-center">
+              <button className="px-3 py-2" type="button" onClick={minus}>
+                <MinusIcon />
+              </button>
+              <p className="w-full text-center">{selectedQuantity}</p>
+              <button className="px-3 py-2" type="button" onClick={plus}>
+                <PlusIcon />
+              </button>
+            </div>
+            <Button size={"lg"} className="font-unbounded font-bold uppercase">
+              Add to Cart
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </>
   );
 }
 
