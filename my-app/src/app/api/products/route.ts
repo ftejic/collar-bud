@@ -13,6 +13,9 @@ export async function GET(req: Request) {
         ...(category ? { category: category as ProductCategory } : {}),
         ...(name ? { name } : {}),
       },
+      include: {
+        sizes: true,
+      },
     });
     return NextResponse.json({ succes: true, data: products }, { status: 200 });
   } catch (error) {

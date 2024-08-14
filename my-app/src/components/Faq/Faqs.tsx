@@ -19,7 +19,7 @@ function Faqs() {
         </AccordionTrigger>
         <AccordionContent>
           You can customize a collar by selecting the design, colors, and adding
-          your pet's name through our easy-to-use online tool.
+          your pet&apos;s name through our easy-to-use online tool.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
@@ -55,10 +55,10 @@ function Faqs() {
       </AccordionItem>
       <AccordionItem value="item-5">
         <AccordionTrigger>
-          <p className="text-left">What if the collar doesn’t fit my pet?</p>
+          <p className="text-left">What if the collar doesn&apos;t fit my pet?</p>
         </AccordionTrigger>
         <AccordionContent>
-          We offer a hassle-free exchange policy. If the collar doesn’t fit,
+          We offer a hassle-free exchange policy. If the collar doesn&apos;t fit,
           contact our customer support for assistance with a size exchange.
         </AccordionContent>
       </AccordionItem>

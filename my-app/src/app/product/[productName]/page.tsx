@@ -12,7 +12,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import { Product as ProductType } from "@/lib/prisma";
+import { ProductType } from "@/lib/prisma";
 import formatPrice from "@/lib/formatPrice";
 
 async function getData(productName: string) {
@@ -34,7 +34,7 @@ async function getData(productName: string) {
 async function ProductPage({ params }: { params: { productName: string } }) {
   const productName = decodeURI(params.productName);
 
-  const { data }: {data: ProductType[]} = await getData(productName);
+  const { data }: { data: ProductType[] } = await getData(productName);
   const product = data[0];
 
   return (
@@ -76,20 +76,27 @@ async function ProductPage({ params }: { params: { productName: string } }) {
                 className="text-xs"
                 href={`/create-collar/for-${product.category}s`}
               >
-                For {product.category.charAt(0).toUpperCase() + product.category.slice(1)}s
+                For{" "}
+                {product.category.charAt(0).toUpperCase() +
+                  product.category.slice(1)}
+                s
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink className="text-xs">{product.name}</BreadcrumbLink>
+              <BreadcrumbLink className="text-xs">
+                {product.name}
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         <h2 className="font-unbounded font-bold text-2xl pt-5">
           {product.name}
         </h2>
-        <h2 className="font-unbounded font-bold text-2xl">{formatPrice(product.price)}&#8364;</h2>
-        <PetNameForm />
+        <h2 className="font-unbounded font-bold text-2xl">
+          {formatPrice(product.price)}&#8364;
+        </h2>
+        <PetNameForm product={product}/>
       </div>
     </section>
   );

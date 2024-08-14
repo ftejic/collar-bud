@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Product as ProductType } from "@prisma/client";
+import { ProductType } from "@/lib/prisma";
 import formatPrice from "@/lib/formatPrice";
 
 function ProductCard({ name, price, images }: ProductType) {

@@ -1,5 +1,5 @@
 import ProductCard from "@/components/Product/ProductCard";
-import { Product as ProductType } from "@/lib/prisma";
+import { ProductType } from "@/lib/prisma";
 
 async function getData() {
   try {

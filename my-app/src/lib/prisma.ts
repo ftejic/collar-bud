@@ -1,6 +1,9 @@
-import { PrismaClient, Product } from "@prisma/client";
+import { PrismaClient, Product, Size } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export default prisma;
-export type { Product };
+
+type ProductType = Product & {sizes: Size[]}
+
+export type { ProductType };
