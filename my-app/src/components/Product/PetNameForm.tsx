@@ -17,6 +17,8 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ProductType } from "@/lib/prisma";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { CartItemType, useCart } from "@/context/cartContext";
+import { v4 as uuidv4 } from "uuid";
 
 const formSchema = z.object({
   petName: z
@@ -29,6 +31,7 @@ function PetNameForm({ product }: { product: ProductType }) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
   const { toast } = useToast();
+  const { cart, saveCart } = useCart();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,7 +41,19 @@ function PetNameForm({ product }: { product: ProductType }) {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values.petName, selectedSize, selectedQuantity);
+    const item: CartItemType = {
+      id: uuidv4(),
+      name: product.name,
+      quantity: selectedQuantity,
+      size: selectedSize,
+      petName: values.petName,
+      image: product.images[0],
+      price: product.price,
+    };
+
+    const newCart = [...cart, item];
+    saveCart(newCart);
+
     setSelectedQuantity(1);
     setSelectedSize("");
     form.reset();
@@ -55,8 +70,6 @@ function PetNameForm({ product }: { product: ProductType }) {
     const size = product.sizes.find(
       (size) => size.size === selectedSize
     )?.quantity;
-
-    console.log(selectedSize);
 
     if (size && selectedQuantity < size) {
       setSelectedQuantity(selectedQuantity + 1);
