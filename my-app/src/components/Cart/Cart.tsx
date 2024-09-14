@@ -15,6 +15,7 @@ import { useCart } from "@/context/cartContext";
 import formatPrice from "@/lib/formatPrice";
 import { calculateTotalPrice } from "@/lib/cartUtils";
 import CartItemList from "./CartItemList";
+import Link from "next/link";
 
 function Cart() {
   const { cart } = useCart();
@@ -34,7 +35,7 @@ function Cart() {
           <SheetTitle className="text-left">Cart</SheetTitle>
         </SheetHeader>
         {cart.length > 0 ? (
-          <div className="flex flex-col justify-between px-1">
+          <div className="flex flex-col justify-between px-1 pt-10">
             <CartItemList />
             <div className="space-y-5 px-5">
               <Separator />
@@ -42,8 +43,10 @@ function Cart() {
                 <p>Total:</p>
                 <p>{formatPrice(calculateTotalPrice(cart))}&#8364;</p>
               </div>
-              <SheetClose asChild>
-                <Button className="w-full">Complete Purchase</Button>
+              <SheetClose asChild >
+                <Link href={"/checkout"}>
+                  <Button className="w-full">Complete Purchase</Button>
+                </Link>
               </SheetClose>
             </div>
           </div>
