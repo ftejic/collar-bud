@@ -1,6 +1,12 @@
 "use client";
 import { Decimal } from "@prisma/client/runtime/library";
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 
 type CartItemType = {
   id: string;
@@ -16,21 +22,29 @@ type CartContextType = {
   cart: CartItemType[];
   saveCart: (newCart: CartItemType[]) => void;
   removeItem: (id: string) => void;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType>({
   cart: [],
   saveCart: () => {},
   removeItem: () => {},
+  clearCart: () => {},
 });
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cart, setCart] = useState<CartItemType[]>(() => {
-    const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  const [cart, setCart] = useState<CartItemType[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    }
+  }, []);
 
   const saveCart = (newCart: CartItemType[]) => {
     setCart(newCart);
@@ -42,8 +56,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     saveCart(newCart);
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, saveCart, removeItem }}>
+    <CartContext.Provider value={{ cart, saveCart, removeItem, clearCart }}>
       {children}
     </CartContext.Provider>
   );

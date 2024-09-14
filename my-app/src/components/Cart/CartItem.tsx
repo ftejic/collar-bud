@@ -19,7 +19,7 @@ function CartItem({
   removeItemFromCart,
 }: CartItemProps) {
   return (
-    <div className="text-sm">
+    <div className="text-sm pb-5 border-b">
       <div className="flex justify-between space-x-2">
         <div className="flex space-x-2">
           <Image
