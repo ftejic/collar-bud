@@ -89,7 +89,7 @@ function PaymentTab({ onTabChange, email }: PaymentTabProps) {
     toast({
       description: "Check your email for confirmation",
     });
-    router.push("/")
+    router.push("/");
   };
 
   return (

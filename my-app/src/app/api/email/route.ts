@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { email, subject, message } = body;
+  const { email, subject, message, name, lastName } = body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -13,12 +13,19 @@ export async function POST(req: Request) {
     },
   });
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: subject,
-    text: message,
-  };
+  const mailOptions = name
+    ? {
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
+        subject: `New Contact Form Submission from ${name} ${lastName}`,
+        text: `You have received a new message from ${name} ${lastName} (${email}):\n\n${message}`,
+      }
+    : {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: subject,
+        text: message,
+      };
 
   try {
     await transporter.sendMail(mailOptions);

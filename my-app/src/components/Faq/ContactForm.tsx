@@ -13,6 +13,7 @@ import {
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
+import { useToast } from "../ui/use-toast";
 
 const formSchema = z.object({
   name: z
@@ -31,6 +32,8 @@ const formSchema = z.object({
 });
 
 function ContactForm() {
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,8 +44,36 @@ function ContactForm() {
     },
   });
 
+  const sendEmail = async (
+    name: string,
+    lastName: string,
+    email: string,
+    message: string
+  ) => {
+    try {
+      const res = await fetch("http://localhost:3000/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          name: name,
+          lastName: lastName,
+          message: message,
+        }),
+      });
+      const data = await res.json();
+      console.log(data.message);
+    } catch (error) {}
+  };
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
+    sendEmail(values.name, values.lastName, values.email, values.message);
+    toast({
+      description: "Your message ",
+    });
     form.reset();
   };
 
