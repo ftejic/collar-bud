@@ -1,8 +1,8 @@
-import { CartItemType } from "@/context/cartContext";
 import formatPrice from "@/lib/formatPrice";
 import { XIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import { CartItemType } from "../../../types/types";
 
 interface CartItemProps extends CartItemType {
   removeItemFromCart: (id: string) => void;
@@ -37,7 +37,7 @@ function CartItem({
         </div>
         <XIcon
           className="w-4 h-4 cursor-pointer"
-          onClick={() => removeItemFromCart(id)}
+          onClick={async () => await removeItemFromCart(id)}
         />
       </div>
       <p className="text-center mt-1">

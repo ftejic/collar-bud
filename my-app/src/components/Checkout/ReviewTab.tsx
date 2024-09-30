@@ -179,7 +179,7 @@ function ReviewTab({ onTabChange, setEmail }: ReviewTabProps) {
                       <FormItem className="col-start-1 col-end-7 lg:col-end-5">
                         <FormLabel>Street Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g. John" {...field} />
+                          <Input placeholder="e.g. Vladike Nikolaja" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -192,7 +192,7 @@ function ReviewTab({ onTabChange, setEmail }: ReviewTabProps) {
                       <FormItem className="col-start-1 col-end-7 lg:col-start-5">
                         <FormLabel>House Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g. Doe" {...field} />
+                          <Input placeholder="e.g. 44" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -208,7 +208,7 @@ function ReviewTab({ onTabChange, setEmail }: ReviewTabProps) {
                         Apartment, entrance, floor, room (optional)
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. Doe" {...field} />
+                        <Input placeholder="e.g. entrance 9A" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -234,7 +234,7 @@ function ReviewTab({ onTabChange, setEmail }: ReviewTabProps) {
                     <FormItem>
                       <FormLabel>State / Province</FormLabel>
                       <FormControl>
-                        <Input placeholder="Postal code" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -247,7 +247,7 @@ function ReviewTab({ onTabChange, setEmail }: ReviewTabProps) {
                     <FormItem>
                       <FormLabel>City</FormLabel>
                       <FormControl>
-                        <Input placeholder="Postal code" {...field} />
+                        <Input placeholder="" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

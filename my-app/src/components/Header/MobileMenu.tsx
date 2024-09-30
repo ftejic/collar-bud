@@ -10,8 +10,12 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function MobileMenu() {
+  const { data: session } = useSession();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -40,14 +44,27 @@ function MobileMenu() {
               </Link>
             </li>
           </ul>
-          <Link
-            href={"/login"}
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 w-full px-4 py-2 my-10"
-          >
-            <SheetClose className="w-full outline-none">
-              Sign in
-            </SheetClose>
-          </Link>
+          {session ? (
+            <Button
+              size={"lg"}
+              variant={"outline"}
+              className="w-full my-10"
+              onClick={() => signOut()}
+              asChild
+            >
+              <SheetClose className="w-full outline-none">Sign out</SheetClose>
+            </Button>
+          ) : (
+            <Button
+              size={"lg"}
+              className="w-full my-10"
+              onClick={() => signIn("google")}
+              asChild
+            >
+              <SheetClose className="w-full outline-none">Sign in</SheetClose>
+            </Button>
+          )}
+
           <Link href={"/help"}>
             <SheetClose className="flex items-center outline-none">
               <CircleHelpIcon className="mr-2" />

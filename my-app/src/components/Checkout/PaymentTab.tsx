@@ -81,11 +81,11 @@ function PaymentTab({ onTabChange, email }: PaymentTabProps) {
     } catch (error) {}
   };
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     sendEmail();
     form.reset();
-    clearCart();
+    await clearCart();
     toast({
       description: "Check your email for confirmation",
     });

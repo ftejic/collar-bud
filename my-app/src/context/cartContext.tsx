@@ -1,5 +1,4 @@
 "use client";
-import { Decimal } from "@prisma/client/runtime/library";
 import React, {
   createContext,
   useState,
@@ -7,16 +6,8 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-
-type CartItemType = {
-  id: string;
-  name: string;
-  quantity: number;
-  size: string;
-  petName: string;
-  image: string;
-  price: Decimal;
-};
+import { CartItemType } from "../../types/types";
+import { useSession } from "next-auth/react";
 
 type CartContextType = {
   cart: CartItemType[];
@@ -37,28 +28,81 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItemType[]>([]);
 
+  const { status } = useSession();
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedCart = localStorage.getItem("cart");
-      if (savedCart) {
-        setCart(JSON.parse(savedCart));
+    const loadCart = async () => {
+      try {
+        const response = await fetch("/api/cart");
+        if (response.ok) {
+          const data = await response.json();
+          setCart(data.items);
+        } else {
+          console.error("Failed to fetch cart. Status:", response.status);
+        }
+      } catch (error) {
+        console.error("Failed to load cart", error);
+      }
+    };
+
+    if (status === "authenticated") {
+      loadCart();
+    }
+  }, [status]);
+
+  const saveCart = async (newCart: CartItemType[]) => {
+    setCart(newCart);
+
+    if (status === "authenticated") {
+      try {
+        await fetch("/api/cart/save", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newCart),
+        });
+      } catch (error) {
+        console.error("Failed to save cart", error);
       }
     }
-  }, []);
-
-  const saveCart = (newCart: CartItemType[]) => {
-    setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
-  const removeItem = (id: string) => {
+  const removeItem = async (id: string) => {
     const newCart = cart.filter((item) => item.id !== id);
-    saveCart(newCart);
+    await saveCart(newCart);
+
+    if (status === "authenticated") {
+      try {
+        await fetch("/api/cart/save", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newCart),
+        });
+      } catch (error) {
+        console.error("Failed to update cart in backend", error);
+      }
+    }
   };
 
-  const clearCart = () => {
-    localStorage.removeItem("cart");
+  const clearCart = async () => {
     setCart([]);
+
+    if (status === "authenticated") {
+      try {
+        await fetch("/api/cart/save", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify([]),
+        });
+      } catch (error) {
+        console.error("Failed to update cart in backend", error);
+      }
+    }
   };
 
   return (
@@ -67,5 +111,3 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     </CartContext.Provider>
   );
 };
-
-export type { CartItemType };

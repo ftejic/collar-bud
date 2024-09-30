@@ -50,6 +50,7 @@ async function ProductPage({ params }: { params: { productName: string } }) {
                   width={600}
                   height={600}
                   className="rounded-md"
+                  priority
                 />
               </CarouselItem>
             ))}

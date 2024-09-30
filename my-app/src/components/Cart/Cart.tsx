@@ -3,6 +3,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -33,11 +34,12 @@ function Cart() {
       <SheetContent className="h-full px-0">
         <SheetHeader className="px-6">
           <SheetTitle className="text-left">Cart</SheetTitle>
+          <SheetDescription />
         </SheetHeader>
         {cart.length > 0 ? (
           <div className="flex flex-col justify-between px-1 pt-10">
             <CartItemList />
-            <div className="space-y-5 px-5">
+            <div className="space-y-5 px-5 pb-10">
               <Separator />
               <div className="flex justify-between">
                 <p>Total:</p>

@@ -30,13 +30,13 @@ export async function POST(req: Request) {
   try {
     await transporter.sendMail(mailOptions);
     return NextResponse.json(
-      { succes: true, message: "Email sent successfully!" },
+      { success: true, message: "Email sent successfully!" },
       { status: 200 }
     );
   } catch (error) {
     return NextResponse.json(
       {
-        succes: false,
+        success: false,
         error: "Failed to send email!",
         details: (error as Error).message,
       },

@@ -17,8 +17,9 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ProductType } from "@/lib/prisma";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { CartItemType, useCart } from "@/context/cartContext";
 import { v4 as uuidv4 } from "uuid";
+import { useCart } from "@/context/cartContext";
+import { CartItemType } from "../../../types/types";
 
 const formSchema = z.object({
   petName: z
@@ -40,7 +41,7 @@ function PetNameForm({ product }: { product: ProductType }) {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const item: CartItemType = {
       id: uuidv4(),
       name: product.name,
@@ -52,7 +53,7 @@ function PetNameForm({ product }: { product: ProductType }) {
     };
 
     const newCart = [...cart, item];
-    saveCart(newCart);
+    await saveCart(newCart);
 
     setSelectedQuantity(1);
     setSelectedSize("");

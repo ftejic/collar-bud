@@ -1,4 +1,4 @@
-import { CartItemType } from "@/context/cartContext";
+import { CartItemType } from "../../types/types";
 
 export const calculateTotalPrice = (cart: CartItemType[]): number => {
   return cart.reduce(

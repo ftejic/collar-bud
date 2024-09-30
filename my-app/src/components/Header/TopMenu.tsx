@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import {
@@ -9,8 +10,12 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Button } from "../ui/button";
 
 function TopMenu() {
+  const { data: session } = useSession();
+
   return (
     <div className="hidden md:flex justify-end mb-4">
       <NavigationMenu>
@@ -61,11 +66,21 @@ function TopMenu() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/login" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            {session ? (
+              <Button
+                className={`${navigationMenuTriggerStyle()} text-foreground`}
+                onClick={() => signOut()}
+              >
+                Sign out
+              </Button>
+            ) : (
+              <Button
+                className={`${navigationMenuTriggerStyle()} text-foreground`}
+                onClick={() => signIn("google")}
+              >
                 Sign in
-              </NavigationMenuLink>
-            </Link>
+              </Button>
+            )}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

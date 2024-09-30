@@ -72,7 +72,7 @@ function ContactForm() {
     console.log(values);
     sendEmail(values.name, values.lastName, values.email, values.message);
     toast({
-      description: "Your message ",
+      description: "Your message is sent.",
     });
     form.reset();
   };

@@ -10,8 +10,8 @@ interface CartItemListProps {
 function CartItemList({ fullHeight }: CartItemListProps) {
   const { cart, removeItem } = useCart();
 
-  const removeItemFromCart = (id: string) => {
-    removeItem(id);
+  const removeItemFromCart = async (id: string) => {
+    await removeItem(id);
   };
 
   const content = (
@@ -37,7 +37,7 @@ function CartItemList({ fullHeight }: CartItemListProps) {
   return fullHeight ? (
     content
   ) : (
-    <ScrollArea className="h-[calc(100dvh-185px)] px-5">{content}</ScrollArea>
+    <ScrollArea className="h-[calc(100dvh-230px)] px-5">{content}</ScrollArea>
   );
 }
 
