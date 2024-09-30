@@ -4,7 +4,7 @@ import ReviewTab from "@/components/Checkout/ReviewTab";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { useState } from "react";
 
-function page() {
+function CheckoutPage() {
   const [tab, setTab] = useState<"review" | "payment">("review");
   const [email, setEmail] = useState("");
 
@@ -30,4 +30,4 @@ function page() {
   );
 }
 
-export default page;
+export default CheckoutPage;

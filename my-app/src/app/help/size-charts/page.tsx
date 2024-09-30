@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-function page() {
+function SizeCharts() {
   return (
     <section className="container mx-auto mt-[68px] md:mt-[124px] lg:mt-[152px] py-10 md:py-16 space-y-10">
       <h2 className="font-unbounded font-bold text-2xl mb-5">Size Charts</h2>
@@ -78,4 +78,4 @@ function page() {
   );
 }
 
-export default page;
+export default SizeCharts;
