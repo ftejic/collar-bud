@@ -3,7 +3,7 @@ import { ProductType } from "@/lib/prisma";
 
 async function getData() {
   try {
-    const res = await fetch("http://localhost:3000/api/products/?cat=dog", {
+    const res = await fetch("/api/products/?cat=dog", {
       cache: "no-store",
     });
     const data = await res.json();
