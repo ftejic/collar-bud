@@ -51,7 +51,7 @@ function ContactForm() {
     message: string
   ) => {
     try {
-      const res = await fetch("/api/email", {
+      const res = await fetch(`${process.env.BASE_URL}/api/email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

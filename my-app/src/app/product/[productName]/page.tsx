@@ -18,7 +18,7 @@ import formatPrice from "@/lib/formatPrice";
 async function getData(productName: string) {
   try {
     const res = await fetch(
-      `/api/products/?name=${productName}`,
+      `${process.env.BASE_URL}/api/products/?name=${productName}`,
       { cache: "no-store" }
     );
 
